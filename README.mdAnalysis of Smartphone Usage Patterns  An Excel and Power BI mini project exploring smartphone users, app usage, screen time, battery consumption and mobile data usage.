@@ -1,0 +1,256 @@
+# Analysis-of-Smartphone-Usage-Patterns-Mini-Project-In-powerbi
+# Analysis of Smartphone Usage Patterns
+
+An Excel and Power BI mini project exploring smartphone users, app usage, screen time, battery consumption and mobile data usage.
+
+## Problem Description and Project Objective
+
+The project converts a tabular smartphone usage dataset into interactive report pages. It compares user groups and device models, summarizes daily usage, and explores relationships between app usage, screen time and battery consumption.
+## Tools Used and Dataset Details
+
+- **Microsoft Excel:** dataset preparation, formatting and the App Usage Hours calculation.
+- **Microsoft Power BI Desktop:** cards, KPI visuals, charts, slicers and report formatting.
+- **Report file:** `Analysis of Smartphone Usage Patterns.pbix`.
+- **Source:** [Mobile Device Usage and User Behavior Dataset on Kaggle](https://www.kaggle.com/datasets/valakhorasani/mobile-device-usage-and-user-behavior-dataset).
+- **Dataset size:** 700 user records; 11 original columns, plus the added App Usage Hours column.
+
+The source is simulated data. Results describe this dataset and should not be treated as representative findings about all smartphone users.
+
+## Data Cleaning, Preparation and Work Completed
+
+1. Selected the smartphone usage dataset for the mini project.
+2. Reviewed the Excel data for missing values and repeated records. Earlier checks of the supplied workbook found no missing values or duplicate user IDs, so all 700 records were retained.
+3. Added borders to the Excel data, adjusted alignment and changed the font to Times New Roman.
+4. Added **App Usage Hours** to convert daily app usage from minutes into hours.
+5. Formatted the new column to two decimal places for readability.
+6. Imported the prepared data into Power BI.
+7. Used user counts for population comparisons and averages for age, installed apps, usage, screen time, battery drain and data consumption.
+8. Created individual visual-building pages and combined the visuals into three numbered dashboard pages.
+9. Added page headings, chart titles, labels, colours and slicers.
+10. Adjusted card formatting so values such as battery drain display in full rather than as an abbreviation such as 1.53K. Rounded the displayed average number of installed apps to a whole number.
+
+Formatting changes improve presentation; they do not alter the original measurements.
+
+## Formulas and Methods Used
+
+### App Usage Hours
+
+```excel
+=D2/60
+```
+
+In the supplied Excel layout, column D contains App Usage Time (min/day). The formula was filled down the new column.
+
+**App Usage Hours = App Usage Time (min/day) / 60**
+
+For example, 270 minutes becomes 4.50 hours. Displaying two decimal places does not require rounding the stored calculation.
+
+### Power BI aggregations
+
+The report visuals use Power BI's field aggregation settings. These are not described here as separately authored DAX measures.
+
+| Calculation | Method | Unit |
+|---|---|---|
+| Total users | Count of user IDs; the source has unique IDs | Users |
+| Average age | Average of Age | Years |
+| Average apps installed | Average of Number of Apps Installed | Apps |
+| Average app usage | Average of App Usage Hours | Hours/day |
+| Average screen time | Average of Screen On Time (hours/day) | Hours/day |
+| Average battery drain | Average of Battery Drain (mAh/day) | mAh/day |
+| Average data usage | Average of Data Usage (MB/day) | MB/day |
+
+The mean is the sum of the values divided by the number of nonblank observations in the current filter context. The installed-app average is approximately **50.68**, displayed as **51** using a zero-decimal format. Its underlying average is unchanged.
+
+## Dashboard 1: User Overview
+
+**Purpose:** describe the users and the devices represented in the dataset.
+
+### Visual 1: Total Users
+
+**Visual type:** Card
+
+**Fields and purpose:** Counts User ID to summarize the number of users.
+
+### Visual 2: Average of Age
+
+**Visual type:** KPI
+
+**Fields and purpose:** Average Age, with User Behavior Class as the trend axis in the saved file.
+
+### Visual 3: Average Apps Installed
+
+**Visual type:** KPI
+
+**Fields and purpose:** Average Number of Apps Installed, with User Behavior Class as the trend axis in the saved file.
+
+### Visual 4: Users by Gender
+
+**Visual type:** Donut chart
+
+**Fields and purpose:** Gender and user count show the distribution of users.
+
+### Visual 5: Users by Device
+
+**Visual type:** Clustered bar chart
+
+**Fields and purpose:** Device Model and user count compare the five phone models.
+
+### Visual 6: Users by Operating System
+
+**Visual type:** Clustered column chart
+
+**Fields and purpose:** Operating System and user count compare Android and iOS.
+
+### Visual 7: Users by Behavior Class
+
+**Visual type:** Treemap
+
+**Fields and purpose:** User Behavior Class and user count show the relative sizes of classes 1–5.
+
+### Visual 8: Gender
+
+**Visual type:** Slicer
+
+**Fields and purpose:** Filters the page by gender.
+
+
+**Formatting:** orange and peach backgrounds, a large bold heading, and distinct category colours for comparisons. Times New Roman is explicitly used for the heading, visual titles and many chart labels.
+
+**Interpretation note:** the two saved KPI visuals have a behavior-class trend axis. Their headline values can reflect the final category rather than the overall mean. For overall-average summary cards, use ordinary Card visuals without a trend axis. The full-dataset average age is approximately 38.48 years and average installed apps is approximately 50.68.
+
+## Dashboard 2: App Usage and Screen Time
+
+**Purpose:** compare app usage and screen time across devices, operating systems and behavior classes.
+
+### Visual 1: Average App Usage (Hours/Day)
+
+**Visual type:** Card
+
+**Fields and purpose:** Average App Usage Hours.
+
+### Visual 2: Average Screen Time (Hours/Day)
+
+**Visual type:** Card
+
+**Fields and purpose:** Average Screen On Time (hours/day).
+
+### Visual 3: Average Apps Installed
+
+**Visual type:** Card
+
+**Fields and purpose:** Average Number of Apps Installed, displayed with no decimals.
+
+### Visual 4: Average App Usage by Device
+
+**Visual type:** Clustered bar chart
+
+**Fields and purpose:** Device Model and average App Usage Hours compare daily app usage.
+
+### Visual 5: Average Screen Time by Operating System
+
+**Visual type:** Clustered column chart
+
+**Fields and purpose:** Operating System and average Screen On Time compare Android and iOS.
+
+### Visual 6: Average App Usage by Behavior Class
+
+**Visual type:** Line chart
+
+**Fields and purpose:** Classes 1–5 and average App Usage Hours compare ordered behavior groups.
+
+### Visual 7: App Usage and Screen Time
+
+**Visual type:** Scatter chart
+
+**Fields and purpose:** App Usage Hours on X, Screen On Time on Y and User ID as the point identifier.
+
+### Visual 8: Operating System
+
+**Visual type:** Slicer
+
+**Fields and purpose:** Filters the page to Android or iOS.
+
+
+**Unfiltered summary values:** app usage **4.52 hours/day**, screen time **5.27 hours/day**, and installed apps **51** when rounded for display.
+
+**Formatting:** purple and lavender theme, bold Times New Roman titles, and summary cards grouped near the top. Usage values are presented in hours so app usage and screen time share the same unit.
+
+The line chart compares ordered classes, not changes over time. Each scatter point represents a user; overlapping points can make the visible number of dots smaller than the number of records.
+
+## Dashboard 3: Battery and Data Consumption
+
+**Purpose:** explore battery drain and data usage, including their relationship with app usage and user groups.
+
+### Visual 1: Average Battery Drain (mAh/Day)
+
+**Visual type:** Card
+
+**Fields and purpose:** Average Battery Drain, displayed to two decimal places.
+
+### Visual 2: Average Data Usage (MB/Day)
+
+**Visual type:** Card
+
+**Fields and purpose:** Average daily Data Usage.
+
+### Visual 3: Average App Usage (Hours/Day)
+
+**Visual type:** Card
+
+**Fields and purpose:** Average daily App Usage Hours.
+
+### Visual 4: Average Battery Drain by Device
+
+**Visual type:** Clustered bar chart
+
+**Fields and purpose:** Device Model and average Battery Drain compare daily consumption.
+
+### Visual 5: Average Data Usage by Behavior Class
+
+**Visual type:** Line chart
+
+**Fields and purpose:** User Behavior Class and average Data Usage compare the five classes.
+
+### Visual 6: App Usage and Battery Drain
+
+**Visual type:** Scatter chart
+
+**Fields and purpose:** App Usage Hours on X, Battery Drain on Y and User ID as the point identifier.
+
+### Visual 7: Users by Behavior Class
+
+**Visual type:** Funnel chart
+
+**Fields and purpose:** User Behavior Class and user count compare group sizes.
+
+### Visual 8: Average Data Usage by Operating System
+
+**Visual type:** Clustered column chart
+
+**Fields and purpose:** Operating System and average Data Usage compare Android and iOS.
+
+### Visual 9: Device Model
+
+**Visual type:** Slicer
+
+**Fields and purpose:** Filters the page by phone model.
+
+
+**Unfiltered summary values:** battery drain **1,525.16 mAh/day**, data usage **929.74 MB/day**, and app usage **4.52 hours/day**.
+
+**Formatting:** pink and rose backgrounds, bold Times New Roman titles, coordinated chart colours, three summary cards and a horizontal device-model slicer. Titles include units to distinguish hours, MB and mAh.
+
+The funnel compares separate groups; it is not a conversion process. Any percentage labels should not be interpreted as user drop-off or movement between classes. Higher battery drain also does not establish that a device has worse battery life, because users may have different usage patterns.
+## Font Pattern, Colours and Dashboard Formatting
+
+- **Primary chosen font:** Times New Roman, explicitly applied to main headings, visual titles, and many axes, legends and slicer labels. Some elements retain inherited/default formatting; the file does not establish that every text element uses the same font.
+- **Main headings:** large, bold and centered. Dashboard 1's main heading is explicitly set to 60 pt.
+- **Visual titles:** bold, commonly around 17–19 pt where explicitly configured; many Dashboard 2 and 3 titles use 18 pt.
+- **Axes and labels:** smaller text, frequently around 11–13 pt where configured, so values remain distinguishable from titles.
+- **Number formatting:** generally two decimals for usage averages; a whole-number display for average installed apps.
+- **Colour pattern:** orange/peach for Dashboard 1, purple/lavender for Dashboard 2, and pink/rose for Dashboard 3.
+- **Layout:** prominent page heading, grouped summary values, comparison charts and a page-specific slicer. Generated layout images were design references, not analytical outputs.
+
+## Supporting Chart Pages
+
+The saved file also contains **Cards & KPI**, **Donut chart**, **Bar chart**, **Column chart**, **Treemap**, **Line Chart**, **Scatter plot** and **Funnel chart** pages. These retain individual visuals used during report development. The three numbered dashboard pages are the main presentation pages.
